@@ -7,12 +7,13 @@
 //   vowels('Why do you ask?') --> 4
 //   vowels('Why?') --> 0
 
-// second soultion
-function vowels(str) {
-  const matches = str.match(/[aeiou]/ig);
 
-  return matches ? matches.length : 0;
-};
+// second soultion :
+function vowels(str) {
+    const matches = str.match(/[aeiou]/ig);
+    return matches ? matches.length : 0;
+  };
+
 
 /*
 first solution :
