@@ -9,20 +9,28 @@
 //     q.remove(); // returns 1;
 
 class Queue {
-  constructor()
-  {
-      this.data = [];
+  constructor() {
+    this.data = [];
   }
 
-  add(record)
-  {
-      this.data.unshift(record);
-  };
+  add(record) {
+    this.data.unshift(record);
+  }
 
-  remove()
-  {
-      return this.data.pop();
-  };
+  remove() {
+    if (this.data.length === 0) return;
+    return this.data.pop();
+  }
+
+  isEmpty() {
+    return this.data.length == 0;
+  }
+
+  printQueue() {
+    this.data.map((a) => {
+      return a;
+    });
+  }
 }
 
 module.exports = Queue;
