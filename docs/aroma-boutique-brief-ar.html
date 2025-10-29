@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aroma Boutique — موجز مشروع</title>
+  <style>
+    :root {
+      --brand: #7b5b8e;      /* Royal plum */
+      --brand-2: #c49bd3;    /* Light plum */
+      --ink: #1f2227;
+      --muted: #6a6f77;
+      --bg: #ffffff;
+      --border: #e6e7eb;
+    }
+
+    @page {
+      size: A4;
+      margin: 20mm 16mm 22mm 16mm;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Amiri", "Cairo", "Noto Naskh Arabic", "DejaVu Sans", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    .page {
+      page-break-after: always;
+    }
+
+    .cover {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: radial-gradient(1200px 600px at 50% -20%, #f6f1f9 0%, #fff 60%);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .cover-inner { max-width: 720px; padding: 0 24px; }
+    .brand {
+      display: inline-block;
+      padding: 10px 18px;
+      border: 1px solid var(--brand-2);
+      color: var(--brand);
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing: .5px;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-size: 40px;
+      margin: 0 0 8px 0;
+      color: var(--ink);
+    }
+    .subtitle {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    .meta {
+      display: inline-flex;
+      gap: 12px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 14px;
+      background: #faf7fd;
+      border: 1px dashed var(--brand-2);
+      padding: 8px 14px;
+      border-radius: 10px;
+    }
+
+    /* Content */
+    .container { max-width: 800px; margin: 0 auto; padding: 8px 4px; }
+    h2 {
+      font-size: 24px; margin: 24px 0 12px; color: var(--ink);
+      border-right: 4px solid var(--brand); padding-right: 10px;
+    }
+    h3 { font-size: 18px; margin: 18px 0 8px; color: var(--ink); }
+
+    p { margin: 0 0 10px; }
+    ul { margin: 0 0 14px 0; padding: 0 22px 0 0; }
+    li { margin: 6px 0; }
+
+    .section {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 14px;
+      background: #fff;
+    }
+
+    .kicker {
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 6px;
+    }
+
+    .note {
+      font-size: 12px; color: var(--muted);
+      border-right: 3px solid var(--border);
+      padding-right: 10px; margin-top: 8px;
+    }
+
+    .hr { height: 1px; background: var(--border); margin: 16px 0; }
+
+    .grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    .badge {
+      display: inline-block; font-size: 12px; color: #fff; background: var(--brand);
+      padding: 4px 8px; border-radius: 999px; margin-left: 8px; vertical-align: middle;
+    }
+
+    .toc {
+      border: 1px dashed var(--border);
+      background: #fcfbfe;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 14px;
+    }
+    .toc a { color: var(--brand); text-decoration: none; }
+
+    .footer-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: 12px; }
+
+    /* Avoid breaking inside bullets */
+    li, h2, h3 { break-inside: avoid; }
+  </style>
+</head>
+<body>
+  <!-- Cover Page -->
+  <section class="page cover">
+    <div class="cover-inner">
+      <div class="brand">Aroma Boutique</div>
+      <h1>موجز مشروع متجر عطور إلكتروني</h1>
+      <div class="subtitle">بيع العطور الأصلية من ماركات عالمية ومحلية بتجربة فاخرة وسهلة الاستخدام</div>
+      <div class="meta">
+        <span>اللغة: العربية</span>
+        <span>•</span>
+        <span>التاريخ: 2025-10-29</span>
+      </div>
+      <div class="footer-note">وثيقة موجزة مُهيّأة للطباعة بصيغة PDF</div>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- Optional: Simple TOC -->
+    <div class="section toc">
+      <div class="kicker">محتويات الوثيقة</div>
+      <ul>
+        <li><a href="#idea">فكرة المشروع والأهداف</a></li>
+        <li><a href="#features">مميزات الموقع</a></li>
+      </ul>
+    </div>
+
+    <section id="idea" class="section">
+      <div class="kicker">أولًا</div>
+      <h2>فكرة المشروع</h2>
+      <h3>اسم المشروع (اختياري)</h3>
+      <p><strong>Aroma Boutique</strong></p>
+
+      <h3>الفكرة</h3>
+      <p>
+        موقع إلكتروني متخصص في بيع العطور الأصلية من ماركات عالمية ومحلية، يهدف إلى تقديم تجربة تسوق
+        فاخرة وسهلة الاستخدام، مع تصميم أنيق وواجهة استخدام مريحة تناسب جميع الفئات.
+      </p>
+
+      <h3>الأهداف</h3>
+      <ul>
+        <li>تسهيل عملية شراء العطور أونلاين بشكل آمن وسريع.</li>
+        <li>توفير إمكانية المقارنة بين العطور والعلامات التجارية المختلفة.</li>
+        <li>تقديم توصيات شخصية بناءً على ذوق المستخدم وتفضيلاته.</li>
+      </ul>
+
+      <p class="note">هذه النسخة مُهيّأة للطباعة وتعكس الرؤية الأولية للمشروع.</p>
+    </section>
+
+    <section id="features" class="section">
+      <div class="kicker">ثانيًا</div>
+      <h2>مميزات الموقع</h2>
+
+      <h3>1. الصفحة الرئيسية <span class="badge">واجهة</span></h3>
+      <ul>
+        <li>تصميم جذاب يعرض أبرز العروض والتخفيضات.</li>
+        <li>إبراز الماركات الشهيرة والمنتجات الأكثر مبيعًا.</li>
+        <li>تقسيم واضح لأقسام العطور (رجالي – نسائي – للجنسين).</li>
+      </ul>
+
+      <div class="hr"></div>
+
+      <h3>2. صفحات المنتجات <span class="badge">تجربة المنتج</span></h3>
+      <ul>
+        <li>صور عالية الجودة من زوايا متعددة.</li>
+        <li>تفاصيل دقيقة تشمل المكونات، درجة الثبات، والمناسبة.</li>
+        <li>تقييمات وآراء المستخدمين لزيادة الثقة في المنتج.</li>
+      </ul>
+
+      <div class="hr"></div>
+
+      <h3>3. نظام بحث وفلترة متقدم <span class="badge">اكتشاف</span></h3>
+      <ul>
+        <li>البحث حسب الماركة، نوع الرائحة، السعر، أو المناسبة.</li>
+        <li>إمكانية ترتيب النتائج حسب السعر، التقييم، أو الأحدث.</li>
+      </ul>
+
+      <div class="hr"></div>
+
+      <h3>4. سلة المشتريات والدفع <span class="badge">تحويل</span></h3>
+      <ul>
+        <li>دعم كامل لبطاقات الائتمان وطرق الدفع المحلية.</li>
+        <li>تتبع حالة الطلب من لحظة الشراء حتى التسليم.</li>
+      </ul>
+
+      <div class="hr"></div>
+
+      <h3>5. مدونة الموقع <span class="badge">محتوى</span></h3>
+      <ul>
+        <li>مقالات ونصائح حول اختيار العطر المناسب.</li>
+        <li>محتوى تعليمي عن مكونات وأنواع العطور.</li>
+      </ul>
+
+      <div class="hr"></div>
+
+      <h3>6. دعم متعدد اللغات <span class="badge">انتشار</span></h3>
+      <ul>
+        <li>واجهة مستخدم متاحة باللغتين العربية والإنجليزية لضمان وصول أوسع للجمهور.</li>
+      </ul>
+    </section>
+
+    <div class="footer-note">© Aroma Boutique — وثيقة تعريفية أولية</div>
+  </div>
+</body>
+</html>
