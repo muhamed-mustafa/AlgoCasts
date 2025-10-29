@@ -130,9 +130,45 @@
 
     /* Avoid breaking inside bullets */
     li, h2, h3 { break-inside: avoid; }
+
+    /* Download bar */
+    .download-bar {
+      position: fixed;
+      top: 12px;
+      left: 12px; /* RTL: يظهر أعلى اليسار */
+      z-index: 9999;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      box-shadow: 0 6px 20px rgba(0,0,0,.06);
+      padding: 8px 12px;
+      border-radius: 999px;
+    }
+    .download-bar button {
+      background: var(--brand);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .download-bar button:hover { background: #694a7a; }
+
+    @media print {
+      .download-bar { display: none !important; }
+    }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
+  <div class="download-bar">
+    <button id="btnDownloadPdf">تحميل PDF</button>
+    <button id="btnPrint" style="background:#2f3542">طباعة</button>
+  </div>
   <!-- Cover Page -->
   <section class="page cover">
     <div class="cover-inner">
@@ -234,5 +270,37 @@
 
     <div class="footer-note">© Aroma Boutique — وثيقة تعريفية أولية</div>
   </div>
+  <script>
+    function generateFileName() {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      return `aroma-boutique-brief-ar_${yyyy}-${mm}-${dd}.pdf`;
+    }
+
+    async function handleDownloadPdf() {
+      const options = {
+        margin: 10,
+        filename: generateFileName(),
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['css', 'legacy'] }
+      };
+      try {
+        if (window.html2pdf) {
+          await window.html2pdf().set(options).from(document.body).save();
+        } else {
+          window.print();
+        }
+      } catch (e) {
+        window.print();
+      }
+    }
+
+    document.getElementById('btnDownloadPdf')?.addEventListener('click', handleDownloadPdf);
+    document.getElementById('btnPrint')?.addEventListener('click', () => window.print());
+  </script>
 </body>
 </html>
