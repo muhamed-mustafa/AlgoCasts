@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aroma Boutique — متطلبات المشروع</title>
+  <style>
+    :root {
+      --brand: #7b5b8e;      /* Royal plum */
+      --brand-2: #c49bd3;    /* Light plum */
+      --ink: #1f2227;
+      --muted: #6a6f77;
+      --bg: #ffffff;
+      --border: #e6e7eb;
+    }
+
+    @page {
+      size: A4;
+      margin: 20mm 16mm 22mm 16mm;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Amiri", "Cairo", "Noto Naskh Arabic", "DejaVu Sans", Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    .page {
+      page-break-after: always;
+    }
+
+    .cover {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: radial-gradient(1200px 600px at 50% -20%, #f6f1f9 0%, #fff 60%);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .cover-inner { max-width: 720px; padding: 0 24px; }
+    .brand {
+      display: inline-block;
+      padding: 10px 18px;
+      border: 1px solid var(--brand-2);
+      color: var(--brand);
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing: .5px;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-size: 40px;
+      margin: 0 0 8px 0;
+      color: var(--ink);
+    }
+    .subtitle {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    .meta {
+      display: inline-flex;
+      gap: 12px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 14px;
+      background: #faf7fd;
+      border: 1px dashed var(--brand-2);
+      padding: 8px 14px;
+      border-radius: 10px;
+    }
+
+    /* Content */
+    .container { max-width: 800px; margin: 0 auto; padding: 8px 4px; }
+    h2 {
+      font-size: 24px; margin: 24px 0 12px; color: var(--ink);
+      border-right: 4px solid var(--brand); padding-right: 10px;
+    }
+    h3 { font-size: 18px; margin: 18px 0 8px; color: var(--ink); }
+
+    p { margin: 0 0 10px; }
+    ul { margin: 0 0 14px 0; padding: 0 22px 0 0; }
+    li { margin: 6px 0; }
+
+    .section {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 14px;
+      background: #fff;
+    }
+
+    .kicker {
+      font-weight: 700;
+      color: var(--brand);
+      margin-bottom: 6px;
+    }
+
+    .note {
+      font-size: 12px; color: var(--muted);
+      border-right: 3px solid var(--border);
+      padding-right: 10px; margin-top: 8px;
+    }
+
+    .hr { height: 1px; background: var(--border); margin: 16px 0; }
+
+    .grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    .badge {
+      display: inline-block; font-size: 12px; color: #fff; background: var(--brand);
+      padding: 4px 8px; border-radius: 999px; margin-left: 8px; vertical-align: middle;
+    }
+
+    .toc {
+      border: 1px dashed var(--border);
+      background: #fcfbfe;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 14px;
+    }
+    .toc a { color: var(--brand); text-decoration: none; }
+
+    .footer-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: 12px; }
+
+    /* Avoid breaking inside bullets */
+    li, h2, h3 { break-inside: avoid; }
+
+    /* Print helpers */
+    .page-break { page-break-before: always; break-before: page; }
+    h4 { font-size: 16px; margin: 10px 0 6px; color: var(--ink); }
+
+    /* Download bar */
+    .download-bar {
+      position: fixed;
+      top: 12px;
+      left: 12px; /* RTL: يظهر أعلى اليسار */
+      z-index: 9999;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      box-shadow: 0 6px 20px rgba(0,0,0,.06);
+      padding: 8px 12px;
+      border-radius: 999px;
+    }
+    .download-bar button {
+      background: var(--brand);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .download-bar button:hover { background: #694a7a; }
+
+    @media print {
+      .download-bar { display: none !important; }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://unpkg.com/html-docx-js/dist/html-docx.js"></script>
+</head>
+<body>
+  <div class="download-bar">
+    <button id="btnDownloadPdf">تحميل PDF</button>
+    <button id="btnDownloadDocx" style="background:#1e90ff">تحميل Word</button>
+    <button id="btnPrint" style="background:#2f3542">طباعة</button>
+  </div>
+  <!-- Removed cover page as requested -->
+
+  <div class="container">
+    <!-- Optional: Simple TOC -->
+    <div class="section toc">
+      <div class="kicker">محتويات الوثيقة</div>
+      <ul>
+        <li><a href="#frontend">متطلبات العميل (واجهة المستخدم – Frontend)</a></li>
+        <li><a href="#backend">متطلبات الأدمن (لوحة التحكم – Backend)</a></li>
+      </ul>
+    </div>
+
+    <!-- Removed: idea section -->
+
+    <!-- Removed: features section -->
+
+    <!-- Frontend Requirements -->
+    <section id="frontend" class="section page-break">
+      <div class="kicker">واجهة المستخدم</div>
+      <h2>متطلبات العميل — Frontend <span class="badge">Frontend</span></h2>
+
+      <h3>1. الصفحة الرئيسية (Homepage)</h3>
+      <ul>
+        <li>عرض بانر رئيسي (صور + روابط مباشرة للمنتجات المميزة).</li>
+        <li>قسم المنتجات المميزة من البراند الخاص.</li>
+        <li>قسم براندات أخرى.</li>
+        <li>تصنيفات حسب نوع العطر (عود – مسك – زهري – فريش – بخور منزلي).</li>
+        <li>آراء العملاء مع تقييمات وصور إن وجدت.</li>
+      </ul>
+      <h4>فوتر الموقع</h4>
+      <ul>
+        <li>روابط الصفحات (عنّا، المتجر، المدونة، التواصل).</li>
+        <li>روابط التواصل الاجتماعي.</li>
+        <li>معلومات التواصل (بريد إلكتروني / رقم الهاتف).</li>
+      </ul>
+
+      <div class="hr"></div>
+
+      <h3>2. صفحة المتجر (Shop Page)</h3>
+      <ul>
+        <li>عرض جميع المنتجات في شبكة.</li>
+      </ul>
+      <h4>فلترة المنتجات حسب</h4>
+      <ul>
+        <li>البراند.</li>
+        <li>نوع الرائحة.</li>
+        <li>النوع (ذكر / أنثى).</li>
+        <li>السعر.</li>
+      </ul>
+      <h4>ترتيب المنتجات</h4>
+      <ul>
+        <li>الأحدث.</li>
+        <li>الأكثر مبيعًا.</li>
+        <li>السعر تصاعدي/تنازلي.</li>
+      </ul>
+      <h4>بطاقات المنتجات تتضمن</h4>
+      <ul>
+        <li>صورة المنتج.</li>
+        <li>الاسم والسعر.</li>
+        <li>زر "أضف إلى السلة".</li>
+        <li>شارة "حصري" إن وجدت.</li>
+      </ul>
+
+      <div class="hr"></div>
+
+      <h3>3. صفحة تفاصيل المنتج (Product Details)</h3>
+      <ul>
+        <li>معرض صور متعددة للمنتج.</li>
+        <li>عرض ملاحظات العطر (علوية – وسطى – قاعدة).</li>
+        <li>وصف تفصيلي ومكونات المنتج.</li>
+        <li>إمكانية اختيار الحجم أو الكمية.</li>
+        <li>زر إضافة إلى السلة.</li>
+        <li>قسم منتجات مشابهة أسفل الصفحة.</li>
+        <li>أزرار مشاركة المنتج على وسائل التواصل.</li>
+      </ul>
+
+      <div class="hr"></div>
+
+      <h3>4. السلة والدفع (Cart & Checkout)</h3>
+      <ul>
+        <li>عرض المنتجات المختارة مع الكميات والأسعار.</li>
+        <li>إدخال كود خصم.</li>
+        <li>ملخص الأسعار (المجموع – الشحن – الإجمالي).</li>
+        <li>صفحة دفع آمنة وسهلة الاستخدام.</li>
+        <li>دعم طرق دفع متعددة (Visa – MasterCard – PayPal – Apple Pay).</li>
+      </ul>
+
+      <div class="hr"></div>
+
+      <h3>5. عن البراند (About Page)</h3>
+      <ul>
+        <li>قصة العلامة التجارية وفلسفتها.</li>
+        <li>تفاصيل عن جودة المكونات ومصادرها.</li>
+        <li>قسم تعريفي بالمؤسس مع صور/فيديو.</li>
+      </ul>
+
+      <div class="hr"></div>
+
+      <h3>6. المدونة (Journal / Blog)</h3>
+      <ul>
+        <li>مقالات حول العطور والفخامة.</li>
+        <li>نصائح التنسيق والاستخدام.</li>
+        <li>أفكار هدايا العطور.</li>
+        <li>إمكانية قراءة المقال كاملًا عبر صفحة مخصصة.</li>
+      </ul>
+
+      <div class="hr"></div>
+
+      <h3>7. صفحة التواصل (Contact Page)</h3>
+      <ul>
+        <li>نموذج تواصل مباشر (اسم – بريد – رسالة).</li>
+        <li>عرض بيانات الاتصال (البريد – رقم الهاتف – حسابات التواصل).</li>
+        <li>روابط إلى الصفحات القانونية والسياسات.</li>
+      </ul>
+
+      <div class="hr"></div>
+
+      <h3>8. الصفحات القانونية (Legal Pages)</h3>
+      <ul>
+        <li>سياسة الشحن والاسترجاع.</li>
+        <li>سياسة الخصوصية.</li>
+        <li>الشروط والأحكام.</li>
+      </ul>
+    </section>
+
+    <!-- Backend Requirements -->
+    <section id="backend" class="section page-break">
+      <div class="kicker">لوحة التحكم</div>
+      <h2>متطلبات الأدمن — Backend <span class="badge">Backend</span></h2>
+
+      <h3>1. إدارة المنتجات</h3>
+      <ul>
+        <li>إضافة / تعديل / حذف المنتجات.</li>
+        <li>تحديد نوع العطر، البراند، السعر، الوصف، المخزون.</li>
+        <li>رفع صور متعددة للمنتج.</li>
+        <li>تعيين منتجات مميزة / حصرية.</li>
+      </ul>
+
+      <div class="hr"></div>
+
+      <h3>2. إدارة التصنيفات والبراندات</h3>
+      <ul>
+        <li>إضافة / تعديل / حذف التصنيفات (عود – مسك – ...).</li>
+        <li>إضافة / تعديل / حذف البراندات.</li>
+      </ul>
+
+      <div class="hr"></div>
+
+      <h3>3. إدارة الطلبات (Orders)</h3>
+      <ul>
+        <li>عرض كل الطلبات مع الحالة (جديد – قيد المعالجة – مكتمل – ملغى).</li>
+        <li>تحديث حالة الطلب وإرسال إشعارات للعميل.</li>
+        <li>عرض تفاصيل الدفع والشحن.</li>
+      </ul>
+
+      <div class="hr"></div>
+
+      <h3>4. إدارة العملاء</h3>
+      <ul>
+        <li>عرض بيانات المستخدمين المسجلين.</li>
+        <li>إمكانية تعديل / حظر / حذف الحسابات.</li>
+        <li>عرض سجل الطلبات لكل عميل.</li>
+      </ul>
+
+      <div class="hr"></div>
+
+      <h3>5. إدارة الأكواد الترويجية (Coupons)</h3>
+      <ul>
+        <li>إنشاء أكواد خصم جديدة.</li>
+        <li>تحديد نوع الخصم (نسبة / مبلغ ثابت).</li>
+        <li>تحديد مدة الصلاحية وعدد مرات الاستخدام.</li>
+      </ul>
+
+      <div class="hr"></div>
+
+      <h3>6. إدارة المدونة</h3>
+      <ul>
+        <li>إضافة / تعديل / حذف المقالات.</li>
+        <li>إدارة الصور والعناوين والمحتوى.</li>
+      </ul>
+
+      <div class="hr"></div>
+
+      <h3>7. إدارة التقييمات والآراء</h3>
+      <ul>
+        <li>مراجعة آراء العملاء قبل النشر.</li>
+        <li>حذف أو تعديل التعليقات المسيئة.</li>
+      </ul>
+
+      <div class="hr"></div>
+
+      <h3>8. إعدادات عامة</h3>
+      <ul>
+        <li>تعديل شعار الموقع – الألوان – بيانات التواصل.</li>
+        <li>إدارة صفحات السياسة من خلال محرر محتوى.</li>
+        <li>إعداد وسائل الدفع والشحن.</li>
+      </ul>
+    </section>
+
+    <div class="footer-note">© Aroma Boutique — متطلبات المشروع</div>
+  </div>
+  <script>
+    function generateFileName() {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      return `aroma-boutique-requirements_${yyyy}-${mm}-${dd}.pdf`;
+    }
+
+    function generateDocxFileName() {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      return `aroma-boutique-requirements_${yyyy}-${mm}-${dd}.docx`;
+    }
+
+    async function handleDownloadPdf() {
+      const options = {
+        margin: 10,
+        filename: generateFileName(),
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, scrollY: 0 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['css', 'legacy'] }
+      };
+      try {
+        if (window.html2pdf) {
+          await window.html2pdf().set(options).from(document.body).save();
+        } else {
+          window.print();
+        }
+      } catch (e) {
+        window.print();
+      }
+    }
+
+    document.getElementById('btnDownloadPdf')?.addEventListener('click', handleDownloadPdf);
+    document.getElementById('btnDownloadDocx')?.addEventListener('click', async () => {
+      try {
+        const container = document.querySelector('.container');
+        if (!container) return window.print();
+        const html = `<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8" />
+          <style>
+            body { font-family: Cairo, Arial, sans-serif; direction: rtl; }
+            h1,h2,h3 { color: #1f2227; }
+            ul { padding-right: 18px; }
+            .kicker { font-weight: 700; color: #7b5b8e; }
+          </style>
+        </head><body>${container.innerHTML}</body></html>`;
+        if (window.htmlDocx && window.htmlDocx.asBlob) {
+          const blob = window.htmlDocx.asBlob(html);
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = generateDocxFileName();
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+        } else {
+          window.print();
+        }
+      } catch (e) {
+        window.print();
+      }
+    });
+    document.getElementById('btnPrint')?.addEventListener('click', () => window.print());
+  </script>
+</body>
+</html>
