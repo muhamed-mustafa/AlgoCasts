@@ -167,10 +167,12 @@
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://unpkg.com/html-docx-js/dist/html-docx.js"></script>
 </head>
 <body>
   <div class="download-bar">
     <button id="btnDownloadPdf">تحميل PDF</button>
+    <button id="btnDownloadDocx" style="background:#1e90ff">تحميل Word</button>
     <button id="btnPrint" style="background:#2f3542">طباعة</button>
   </div>
   <!-- Removed cover page as requested -->
@@ -383,6 +385,14 @@
       return `aroma-boutique-requirements_${yyyy}-${mm}-${dd}.pdf`;
     }
 
+    function generateDocxFileName() {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      return `aroma-boutique-requirements_${yyyy}-${mm}-${dd}.docx`;
+    }
+
     async function handleDownloadPdf() {
       const options = {
         margin: 10,
@@ -404,6 +414,33 @@
     }
 
     document.getElementById('btnDownloadPdf')?.addEventListener('click', handleDownloadPdf);
+    document.getElementById('btnDownloadDocx')?.addEventListener('click', async () => {
+      try {
+        const container = document.querySelector('.container');
+        if (!container) return window.print();
+        const html = `<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8" />
+          <style>
+            body { font-family: Cairo, Arial, sans-serif; direction: rtl; }
+            h1,h2,h3 { color: #1f2227; }
+            ul { padding-right: 18px; }
+            .kicker { font-weight: 700; color: #7b5b8e; }
+          </style>
+        </head><body>${container.innerHTML}</body></html>`;
+        if (window.htmlDocx && window.htmlDocx.asBlob) {
+          const blob = window.htmlDocx.asBlob(html);
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = generateDocxFileName();
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+        } else {
+          window.print();
+        }
+      } catch (e) {
+        window.print();
+      }
+    });
     document.getElementById('btnPrint')?.addEventListener('click', () => window.print());
   </script>
 </body>
